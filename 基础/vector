@@ -1,0 +1,54 @@
+#include<vector>
+
+(1)初始化
+vector<int> a(n); //n个元素，初值不确定
+vector<int> a(n,m); //n个m
+vector<int> a(b); //a=b
+
+迭代器a=b[0:n]：
+vector<int> a(b.begin(),b.begin+n); //b是vector
+vector<int> a(b,b+n); //b是vector数组
+
+（2）读数据
+迭代器
+for(vector<int>::iterator iter=a.begin(); iter < a.end(); iter++) cout<<*iter;
+
+（3）常用操作
+赋值
+a.assign(b.begin(), b.begin()+n); 
+a.assign(n,m);
+
+头尾
+a.back();
+a.front();
+
+访问
+a[i];
+a.at(i); //安全访问
+
+清空
+a.clear();
+
+判空
+a.empty();
+
+大小
+a.size();
+
+交换
+a.swap(b);
+
+最后插入删除
+a.pop_back();
+a.push_back(5);
+
+指定位置插入
+a.insert(a.begin()+n,m); //在n插m
+a.insert(a.begin()+n,m,p); //在n插m个p
+
+指定位置删除
+a.erase(a.begin()+n,a.begin()+m); //n删到m
+
+重置大小
+a.resize(n, m=0); //多删，少补m 
+a.reserve(n); //提前分配n
