@@ -1,0 +1,62 @@
+#include<string>
+
+（1）初始化
+string( length, char ch ); //length个ch
+string( const char *str ); //复制字符串数组str
+string( const char *str, length ); //复制字符串数组str的前length个
+string( string &str, index, length ); //复制string的index到index+length
+string( input_iterator start, input_iterator end ); //迭代器复制
+
+（2）后面添加（append）和赋值（assign）
+//类似于构造函数
+
+（3）得到对应的c_str
+const char *c_str();
+
+（4）大小相关
+size();  length(); //字符个数
+max_size(); //string对象最多包含的字符数，超出会抛出length_error异常
+capacity(); //string对象提前分配的大小
+
+（5）比较
+int compare( const basic_string &str );
+int compare( const char *str );
+//<0	this < str
+//0	this == str
+//>0	this > str
+
+（6）查找
+ find( const basic_string &str, index ); //找从index开始，str第一次出现的位置
+ find( const char *str, index );
+ find( const char *str, index, length ); //找从index到index+length，str第一次出现的位置
+ find( char ch, index ); //找从index开始，ch第一次出现的位置
+ // 找不到返回string::npos
+ 
+ find_first_of( const basic_string &str, index = 0 ); //查找在字符串中第一个与str中的某个字符匹配的字符位置
+ find_last_of( const basic_string &str, index = npos ); //最后一个
+ 
+ find_first_not_of( const basic_string &str, index = 0 ); //在字符串中查找第一个与str中的字符都不匹配的字符位置
+ find_last_not_of( const basic_string &str, index = npos ); //最后一个
+ 
+ （7）子串
+ substr( index, num ); //从index开始，num个字符的子串
+ 
+ （8）交换
+ swap(str); //与str交换
+ 
+ （9）大小写转换
+ tolower(str); //小写
+ toupper(str); //大写
+ 
+ （10）分割
+ char str[] = "a,b,c,d";
+ const char *split = ",";
+ char *p = strtok(str,split);
+ while( p != NULL )
+ {
+     p = strtok(NULL,split);
+ }
+ 
+ 
+ 
+ 
