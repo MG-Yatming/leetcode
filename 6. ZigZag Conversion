@@ -1,0 +1,47 @@
+思路（1）
+-使用numRows个string rs存储每行的结果
+-依次读取s[i]，从0到numRows到0(j)，把s[i]当前的值存到rs[j]
+
+思路（2）
+-寻找规律
+-下图为numRows=4
+-以每一个“V”为一组，每个V由0/1组成
+-有numRows-1个0和1
+-相临的“V”对应的点相差2*numRows-1
+-对于第i行，等于一个只有numRows-i行的“V”
+  -中轴线对应的点相差2*(numRows-i-1)
+*     *ni   0	    *	  #     #   num(0/1): numRows-1-i
+ *i  *mi     0   1     0   *    stride(i): 2*(numRows-1-i)
+  * *         0 1       0 1     mirror_idx: idx+stride(i)
+   *           1         1      next_idx: idx+stride(0)
+   
+class Solution {
+public:
+    string convert(string s, int numRows) {
+        string rs(s.size(), ' '); //提前分配空间，减少str加法导致的内存分配和时间
+        int count=0;
+        int stride_0 = 0;
+        int stride_i = 0;
+        int m_idx = 0;
+        for(int i=0;i<numRows;i++)
+        {
+            stride_0 = 2*(numRows-1);
+            // if numRows=0, stride_0=>0, stride_0 should be at least 1
+        	stride_0 = stride_0==0?1:stride_0;
+        	for(int idx=i;idx<s.size();idx+=stride_0)
+        	{
+        		rs[count] = s[idx];
+                count++;
+        		
+        		stride_i = 2*(numRows-1-i);
+				m_idx = idx + stride_i;
+				if(i>0 && i< numRows-1 && m_idx<s.size())
+        		{
+        			rs[count] = s[m_idx];
+                    count++;
+        		}
+			}
+		}
+        return rs;
+    }
+};
