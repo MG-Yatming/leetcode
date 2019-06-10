@@ -10,7 +10,7 @@
 -相临的“V”对应的点相差2*numRows-1
 -对于第i行，等于一个只有numRows-i行的“V”
   -中轴线对应的点相差2*(numRows-i-1)
-*     *ni   0	    *	  #     #   num(0/1): numRows-1-i
+*     *ni   0	  *   #     #   num(0/1): numRows-1-i
  *i  *mi     0   1     0   *    stride(i): 2*(numRows-1-i)
   * *         0 1       0 1     mirror_idx: idx+stride(i)
    *           1         1      next_idx: idx+stride(0)
