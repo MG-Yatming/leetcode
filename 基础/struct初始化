@@ -1,0 +1,32 @@
+（1）基本方法
+struct Student{ //声明一个结构体类型Student
+int num; //声明一个整形变量num
+char name[20]; //声明一个字符型数组name
+char sex; //声明一个字符型变量sex
+int age; //声明一个整形变量age
+float score; //声明一个单精度型变量
+char addr[30]; //声明一个字符型数组addr
+};
+
+Student student1={
+      10001,
+      "qianshou",
+      'm',
+      19,
+      "100",
+      "JiNan"
+  };
+  
+（2）构造函数
+struct test
+{
+    test(int n){
+        printf("test(%d)\n",n);
+    }
+ 
+    test(){
+        printf("test()\n");
+    }
+}
+
+test a(1);
