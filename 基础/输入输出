@@ -1,0 +1,150 @@
+IO类
+
+istream，wistream从流读取数据	iostream
+ostream，wostream向流写入数据	iostream
+iostream，wiostream读写流	iostream
+
+ifstream，wifstream从文件读取数据	fstream
+ofstream，wofstream向文件写入数据	fstream
+fstream，wfstream读写文件	fstream
+
+istringstream，wistringstream从string读取数据	sstream
+ostringstream，wostringstream向string写入数据	sstream
+stringstream，wstringstream读写string	sstream
+
+======================================================
+
+常见IO对象
+cin，一个istream对象，从标准输入读取数据
+cout，一个ostream对象，从标准输出写入数据
+cerr，一个ostream对象，用于输出错误消息
+getline函数，从一个给定的输入流读取一行数据存入string对象
+
+=====================================================
+
+C++中几个输入函数的用法和区别(cin、cin.get()、cin.getline()、getline()、gets()、getchar()))
+
+1、cin>>
+用法1：最基本用法：
+cin>>a>>b;
+cout<<a+b<<endl;
+输入：2[回车]3[回车]
+输出：5
+
+用法2：接受一个字符串，遇“空格”、“TAB”、“回车”都结束
+char a[20];
+cin>>a;
+cout<<a<<endl;
+
+输入：jkljkljkl
+输出：jkljkljkl
+
+输入：jkljkl jkljkl //遇空格结束，所以不能输入多个单词
+输出：jkljkl
+
+----------------------------------------------------
+
+2、cin.get()
+用法1： cin.get(字符变量名)可以用来接收字符
+char ch;
+ch=cin.get(); //或者cin.get(ch);只能获取一个字符
+cout<<ch<<endl;
+
+输入：jljkljkl
+输出：j
+
+用法2：cin.get(字符数组名,接收字符数目)用来接收一行字符串,可以接收空格
+char a[20];
+cin.get(a,20); //有些类似getline。可以输入多个单词，中间空格隔开。
+cout<<a<<endl;
+
+输入：jkl jkl jkl
+输出：jkl jkl jkl
+
+输入：abcdeabcdeabcdeabcdeabcde （输入25个字符）
+输出：abcdeabcdeabcdeabcd （接收19个字符+1个'\0'）
+
+-----------------------------------------------------
+
+3、cin.getline() // 接受一个字符串，可以接收空格并输出
+
+char m[20];
+cin.getline(m,5); //与上面基本相同。
+cout<<m<<endl;
+
+输入：jkljkljkl
+输出：jklj
+
+接受5个字符到m中，其中最后一个为'\0'，所以只看到4个字符输出；
+
+如果把5改成20：
+输入：jkljkljkl
+输出：jkljkljkl
+
+输入：jklf fjlsjf fjsdklf
+输出：jklf fjlsjf fjsdklf
+
+//延伸：
+//cin.getline()实际上有三个参数，cin.getline(接受字符串到m,接受个数5,结束字符)
+//当第三个参数省略时，系统默认为'\n'
+//如果将例子中cin.getline()改为cin.getline(m,5,'a');当输入jlkjkljkl时输出jklj，输入jkaljkljkl时，输出jk
+
+---------------------------------------------------------------
+
+4、getline() // 接受一个字符串，可以接收空格并输出，需包含“#include<string>”
+
+string str;
+getline(cin,str);
+cout<<str<<endl;
+
+输入：jkljkljkl
+输出：jkljkljkl
+
+输入：jkl jfksldfj jklsjfl
+输出：jkl jfksldfj jklsjfl
+
+和cin.getline()类似，但是cin.getline()属于istream流，而getline()属于string流，是不一样的两个函数
+
+--------------------------------------------------------------
+
+5、gets() // 接受一个字符串，可以接收空格并输出，需包含“#include<string>”
+
+char m[20];
+gets(m); //不能写成m=gets();
+cout<<m<<endl;
+
+输入：jkljkljkl
+输出：jkljkljkl
+
+输入：jkl jkl jkl
+输出：jkl jkl jkl
+
+---------------------------------------------------------------------
+
+6、getchar() //接受一个字符，需包含“#include<string>”
+
+char ch;
+ch=getchar(); //不能写成getchar(ch);
+cout<<ch<<endl;
+
+输入：jkljkljkl
+输出：j
+
+//getchar()是C语言的函数，C++也可以兼容，但是尽量不用或少用
+
+=====================================================
+
+管理输出缓冲
+每个输出流都管理一个缓冲区，缓冲区的存在可以使多次写操作合并为一次，从而提高性能，只有在缓冲区刷新的时候才真正的写到设备或文件。下列情况下缓冲区被刷新：
+
+程序正常结束时，缓冲区被刷新。
+缓冲区满时，缓冲区被刷新。
+可以使用操纵符例如endl显式刷新缓冲区。
+int main(void)
+{
+    std::cout << "hello,world"  << std::endl;//输出hello,world和一个换行，然后刷新缓冲区
+    std::cout << "hello,world" << std::flush;//输出hello,world，然后刷新缓冲区
+    std::cout << "hello,world" << std::ends;//输出hello,world和一个空字符，然后刷新缓冲区
+    system("pause");
+    return 0;
+}
