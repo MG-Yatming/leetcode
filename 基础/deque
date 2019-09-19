@@ -1,0 +1,21 @@
+#include<deque>
+
+1.访问
+operator[]：直接访问指定位置的元素
+at：直接访问指定位置的元素，指定位置超出有效范围会报出异常
+front：访问首元素
+back：访问尾元素
+
+2.修改:
+assign：赋值
+push_back：在尾部添加一个元素
+push_front：在首部添加一个元素
+pop_back：在尾部删除一个元素
+pop_front：在首部删除一个元素
+insert：迭代器位置插入元素，或者插入连续的序列
+erase：删除迭代器位置的元素，或者删除连续的序列
+swap：交换两个容器的内容
+clear：清空容器的内容
+emplace (C++11)：在迭代器位置插入元素（emplace使用直接构造函数，insert使用复制构造函数）
+emplace_front (C++11)：在首部添加一个元素
+emplace_back (C++11)：在尾部添加一个元素
