@@ -1,0 +1,39 @@
+#include<fstream>
+ifstream fin(“test.txt");
+ 
+for(int i=0;i<n;i++)
+  fin>>a[i];
+fin.close();
+ 
+ofstream fout("test.txt"); 
+for(int i=0;i<n;i++)
+	fout<<a[i];
+fout.close();
+
+详细：
+文件打开方式属性
+属性                              作用
+ios::in    供读，文件不存在则创建(ifstream默认的打开方 式)
+ios::out    供写，文件不存在则创 建，若文件已存在则清空原内容(ofstream默认的打开方式)
+ios::ate    文件打开时，指针在文件最后。可改变指针的位置，常和in、out联合使用
+ios::app    供写，文件不存在则创建，若文件已存在则在原文件内容后写入 新的内容，指针位置总在最后
+ios::trunc    在读写前先将文件长度截断为0（默认）
+ios::nocreate    文件不存在时产生错误，常和in或app联合使用
+ios::noreplace    文件存在时产生错误，常和out联合使用
+ios::binary    二进制格式文件
+
+文件保护方式选择项：
+属性                              作用
+filebuf::openprot    默认的兼容共享方式
+filebuf::sh_none    独占，不共享
+filebuf::sh_read    读共享
+filebuf::sh_write    写共享
+
+文件流的打开方式(举例)
+ifstream f("a.txt", ios::nocreate);　　　　　　　　 //默认以 ios::in 的方式打开文件，文件不存在时操作失败  
+ofstream f("a.txt");　　　　　　　　　　　　　　　 //默认以 ios::out的方式打开文件  
+fstream　 f("a.dat", ios::in|ios::out|ios::binary);　//以读 写方式打开二进制文件 
+
+————————————————
+版权声明：本文为CSDN博主「weirdo_coder」的原创文章，遵循 CC 4.0 BY-SA 版权协议，转载请附上原文出处链接及本声明。
+原文链接：https://blog.csdn.net/weirdo_coder/article/details/90454734
