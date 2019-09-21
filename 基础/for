@@ -1,0 +1,15 @@
+// 迭代器
+for (auto it = arr.begin(); it != arr.end(); it++)
+{
+    std::cout << *it << std::endl;
+}
+
+// #include<algorithm> std::for_each
+void func(int n);
+std::for_each(arr.begin(), arr.end(), func);
+
+// c++ 11新用法
+for (auto n : arr)
+{
+    std::cout << n << std::endl;
+}
