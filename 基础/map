@@ -1,0 +1,68 @@
+#include<map>
+
+- 所有元素都会根据元素的减值自动被排序（红黑树）
+- map的所有元素都是pair
+
+template <class T1, class T2>
+struct pair{
+　　typedef T1 first_type;
+　　typedef T2 second_type;
+　　T1 first; //public
+　　T2 second; //public
+　　pair() : first(T1()),second(T2()) {}
+　　pair(const T1&a,const T2&b) :first(a),second(b) {}
+};
+
+添加数据
+map<int ,string> maplive;  
+1.maplive.insert(pair<int,string>(1,"a"));
+2. maplive.insert(map<int,string>::value_type(1,"a"));
+3. maplive[1]="a";
+
+map的基本操作函数
+begin()          返回指向map头部的迭代器
+clear()         删除所有元素
+count()          返回指定元素出现的次数
+empty()          如果map为空则返回true
+end()            返回指向map末尾的迭代器
+equal_range()    返回特殊条目的迭代器对
+erase()          删除一个元素
+find()           查找一个元素
+get_allocator()  返回map的配置器
+insert()         插入元素
+key_comp()       返回比较元素key的函数
+lower_bound()    返回键值>=给定元素的第一个位置
+max_size()       返回可以容纳的最大元素个数
+rbegin()         返回一个指向map尾部的逆向迭代器
+rend()           返回一个指向map头部的逆向迭代器
+size()           返回map中元素的个数
+swap()            交换两个map
+upper_bound()     返回键值>给定元素的第一个位置
+value_comp()      返回比较元素value的函数
+
+demo
+// 插入
+map<string,int> strMap;  //以string为键值，以int为实值
+strMap[string("jjhou")] = 1;
+strMap[string("jerry")] = 2; 
+
+pair<string,int> value(string("david"),3);
+strMap.insert(value);//插入新元素
+
+// 遍历
+map<string,int>::iterator strmap_iter = strMap.begin();
+for(;strmap_iter !=strMap.end();strmap_iter++)
+{
+     cout<<strmap_iter->first<<' '<<strmap_iter->second<<endl;
+}
+
+// 查找
+map<string,int>::iterator iter1 = strMap.find(string("mchen"));
+if(iter1 == strMap.end()) cout<<"mchen no fount"<<endl;
+
+// 修改
+iter1->second = 9;
+
+// 删除
+strMap.erase(iter1);//删除一个条目
+strMap.erase(string("jason"));//根据键值删除
